@@ -93,6 +93,7 @@ int main(){
                 for(int b = 0; b < N_BUTTONS; b++){
                     printf("%d ", matrise[f][b]);
                 }
+                printf("\n");
             }
 
 
