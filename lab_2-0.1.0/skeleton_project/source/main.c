@@ -58,7 +58,7 @@ int main(){
                                 }
                                 printf("\n");
                             }
-                        
+                        }
                         //if(0 <= floor && floor <= (N_FLOORS-1)){
                         if (floor > f){
                             elevio_motorDirection(DIRN_DOWN);
