@@ -50,11 +50,11 @@ int main(){
                     matrise[f][b] = 1;
                     
                     if(matrise[f][b] == 1){
-                        if (floor > f){
+                        if (floor < f){
                             elevio_motorDirection(DIRN_UP);
                         }
 
-                        if (floor < f){
+                        if (floor > f){
                             elevio_motorDirection(DIRN_DOWN);
                         }
 
