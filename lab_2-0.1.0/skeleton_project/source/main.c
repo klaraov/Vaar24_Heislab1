@@ -9,6 +9,8 @@ struct Request{
     int direction;
 };
 
+int matrise [4][3];
+
 struct Request rlist [];
 
 int main(){
