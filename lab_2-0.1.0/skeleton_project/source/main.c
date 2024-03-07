@@ -48,14 +48,12 @@ int main(){
                 if(btnPressed == 1 && btnPressed == btnPressedAfterDelay){
                     elevio_buttonLamp(f, b, 1);
                     struct Request r;
-                    if(b == 2){
-                        r.floorTo = f;
-                        if(floor>f){
-                            r.direction = -1;
-                        }
-                        if(floor<f){
-                            r.direction = 1;
-                        }
+                    r.floorTo = f;
+                    if(floor>f){
+                        r.direction = DIRN_DOWN;
+                    }
+                    if(floor<f){
+                        r.direction = DIRN_UP;
                     }
 
                     if(floor == r.floorTo){
@@ -65,7 +63,6 @@ int main(){
                         nanosleep(&(struct timespec){3, 0}, NULL);
                         elevio_doorOpenLamp(0);
                         elevio_motorDirection(DIRN_UP);
-                        elevio_buttonLamp(f, b, 0);
                     }
                 }
                 //elevio_buttonLamp(f, b, btnPressed);
