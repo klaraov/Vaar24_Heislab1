@@ -17,14 +17,14 @@ int main(){
     printf("Press the stop button on the elevator panel to exit\n");
     printf("%d ", matrise[0][0]);
 
-    elevio_motorDirection(DIRN_UP);
+   // elevio_motorDirection(DIRN_UP);
 
     while(1){
 
         int floor = elevio_floorSensor();
 
         if(floor == 0){
-            elevio_motorDirection(DIRN_UP);
+     //       elevio_motorDirection(DIRN_UP);
             elevio_floorIndicator(floor);
         }
         if(floor == 1){
@@ -34,7 +34,7 @@ int main(){
             elevio_floorIndicator(2);
         }
         if(floor == N_FLOORS-1){
-            elevio_motorDirection(DIRN_DOWN);
+    //        elevio_motorDirection(DIRN_DOWN);
             elevio_floorIndicator(3);
         }
 
@@ -50,6 +50,14 @@ int main(){
                     matrise[f][b] = 1;
                     
                     if(matrise[f][b] == 1){
+                        if (floor > f){
+                            elevio_motorDirection(DIRN_UP);
+                        }
+
+                        if (floor > f){
+                            elevio_motorDirection(DIRN_DOWN);
+                        }
+
                         if(floor == f){
                             elevio_motorDirection(DIRN_STOP);
                             elevio_buttonLamp(f, b, 0);
