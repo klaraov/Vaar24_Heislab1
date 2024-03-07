@@ -80,8 +80,6 @@ int main(){
 
         if(elevio_obstruction()){
             elevio_stopLamp(1);
-            elevio_motorDirection(DIRN_STOP);
-            elevio_doorOpenLamp(1);
 
         } else {
             elevio_stopLamp(0);
