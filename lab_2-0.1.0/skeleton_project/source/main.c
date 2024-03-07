@@ -48,7 +48,7 @@ int main(){
                     elevio_buttonLamp(f, b, 1);
                     matrise[f][b] = 1;
                     
-                    while(matrise[f][b] == 1){
+                    if(matrise[f][b] == 1){
 
                         if(elevio_stopButton()){
                             elevio_motorDirection(DIRN_STOP);
@@ -59,7 +59,6 @@ int main(){
                                 }
                                 printf("\n");
                             }
-
 
                             break;
                         }
@@ -100,7 +99,7 @@ int main(){
         } else {
             elevio_stopLamp(0);
         }
-
+/*
         if(elevio_stopButton()){
             elevio_motorDirection(DIRN_STOP);
 
@@ -114,7 +113,7 @@ int main(){
 
             break;
         }
-
+*/
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
     }
 
