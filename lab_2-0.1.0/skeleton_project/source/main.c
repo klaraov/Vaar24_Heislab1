@@ -9,7 +9,7 @@ struct Request{
     int direction;
 };
 
-int matrise[4][3] = {0};
+int matrise[4][3];
 printf("%d", matrise[0][0]);
 
 int main(){
