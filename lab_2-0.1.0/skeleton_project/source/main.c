@@ -25,7 +25,7 @@ int main(){
 
         if(floor == 0){
             elevio_motorDirection(DIRN_UP);
-            elevio_floorIndicator(0);
+            elevio_floorIndicator(floor);
         }
         if(floor == 1){
             elevio_floorIndicator(1);
