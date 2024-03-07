@@ -49,7 +49,7 @@ int main(){
                     
                     while(matrise[f][b] == 1){
 
-                        int floor = elevio_floorSensor();
+                        floor = elevio_floorSensor();
 
 
                         if(elevio_stopButton()){
@@ -63,6 +63,7 @@ int main(){
                                
                             }
                             break;
+                        }
                         
                         if(0 <= floor && floor <= (N_FLOORS-1)){
                             
