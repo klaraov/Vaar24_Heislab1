@@ -13,13 +13,14 @@ struct Request{
 };
 
 int matrise[ROWS][COLS] = {0};
-printf("%d ", matrise[0][0]);
+
 
 int main(){
     elevio_init();
 
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
+    printf("%d ", matrise[0][0]);
 
     elevio_motorDirection(DIRN_UP);
 
