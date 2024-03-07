@@ -52,7 +52,7 @@ int main(){
                         if (floor > f){
                             elevio_motorDirection(DIRN_DOWN);
                         }
-                        
+
                         if (floor < f){
                             elevio_motorDirection(DIRN_UP);
                         }
@@ -95,7 +95,7 @@ int main(){
                 for(int b = 0; b < N_BUTTONS; b++){
                     printf("%d ", matrise[f][b]);
                 }
-                printf("\n")
+                printf("\n");
             }
 
 
