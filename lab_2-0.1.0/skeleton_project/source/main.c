@@ -49,7 +49,7 @@ int main(){
                     elevio_buttonLamp(f, b, 1);
                     matrise[f][b] = 1;
                     
-                    if(matrise[f][0] == 1){
+                    if(matrise[f][b] == 1){
                         if(floor == f){
                             elevio_motorDirection(DIRN_STOP);
                             elevio_buttonLamp(f, b, 0);
@@ -59,6 +59,7 @@ int main(){
                             elevio_motorDirection(DIRN_UP);
                         }
                     }
+
                 }
                 //elevio_buttonLamp(f, b, btnPressed);
             }
