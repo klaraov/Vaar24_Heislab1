@@ -24,12 +24,15 @@ int main(){
         }
     }
 
+./
+
 
     while(1){
 
         int floor = elevio_floorSensor();
 
         if(0 <= floor && floor <= (N_FLOORS-1)){
+
             elevio_floorIndicator(floor);
         }
 
@@ -47,7 +50,7 @@ int main(){
                     elevio_buttonLamp(f, b, 1);
                     matrise[f][b] = 1;
                     
-                    if(matrise[f][b] == 1){
+                    while(matrise[f][b] == 1){
                         
                         if(0 <= floor && floor <= (N_FLOORS-1)){
                             
