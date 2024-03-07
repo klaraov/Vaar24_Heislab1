@@ -7,7 +7,6 @@
 #define ROWS 4
 #define COLS 3
 
-int matrise[ROWS][COLS] = {0};
 
 
 int main(){
@@ -16,6 +15,7 @@ int main(){
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
     printf("%d ", matrise[0][0]);
+    int matrise[ROWS][COLS] = {0};
 
 
     for(int f = 0; f < N_FLOORS; f++){
