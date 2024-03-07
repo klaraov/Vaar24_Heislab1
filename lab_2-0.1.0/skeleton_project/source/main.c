@@ -47,7 +47,7 @@ int main(){
                     elevio_buttonLamp(f, b, 1);
                     matrise[f][b] = 1;
                     
-                    while(matrise[f][b] != NULL){
+                    while(matrise[f][b] == 1){
 
                         if(elevio_stopButton()){
                             elevio_motorDirection(DIRN_STOP);
