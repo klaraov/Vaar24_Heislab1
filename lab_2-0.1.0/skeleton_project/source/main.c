@@ -9,7 +9,8 @@ struct Request{
     int direction;
 };
 
-int matrise [4][3];
+int matrise [4][3] = {0};
+printf(matrise);
 
 struct Request rlist [];
 
@@ -49,6 +50,7 @@ int main(){
 
                 if(btnPressed == 1 && btnPressed == btnPressedAfterDelay){
                     elevio_buttonLamp(f, b, 1);
+                    matrise[f][b] = 1;
                     struct Request r;
                     r.floorTo = f;
                     if(floor>f){
