@@ -10,9 +10,7 @@ struct Request{
 };
 
 int matrise[4][3] = {0};
-printf(matrise[0][0]);
-
-struct Request rlist [];
+printf("%d", matrise[0][0]);
 
 int main(){
     elevio_init();
