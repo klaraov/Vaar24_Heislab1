@@ -24,25 +24,10 @@ int main(){
         int floor = elevio_floorSensor();
 
         if(0 <= floor && floor <= (N_FLOORS-1)){
-     //       elevio_motorDirection(DIRN_UP);
             elevio_floorIndicator(floor);
         }
-/*
-        if(floor == 0){
-     //       elevio_motorDirection(DIRN_UP);
-            elevio_floorIndicator(floor);
-        }
-        if(floor == 1){
-            elevio_floorIndicator(1);
-        }
-        if(floor == 2){
-            elevio_floorIndicator(2);
-        }
-        if(floor == N_FLOORS-1){
-    //        elevio_motorDirection(DIRN_DOWN);
-            elevio_floorIndicator(3);
-        }
-        */
+
+
 
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
