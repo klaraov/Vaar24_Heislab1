@@ -9,8 +9,8 @@ struct Request{
     int direction;
 };
 
-int matrise [4][3] = {0};
-printf(matrise);
+int matrise[4][3] = {0};
+printf(matrise[0][0]);
 
 struct Request rlist [];
 
