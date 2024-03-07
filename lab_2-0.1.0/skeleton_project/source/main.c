@@ -14,7 +14,7 @@ int main(){
     int matrise[ROWS][COLS] = {0};
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
-    printf("%d ", matrise[0][0]);
+   
     
 
 
@@ -80,12 +80,22 @@ int main(){
         if(elevio_obstruction()){
             elevio_stopLamp(1);
             elevio_motorDirection(DIRN_STOP);
+            elevio_doorOpenLamp(1);
+
         } else {
             elevio_stopLamp(0);
         }
 
         if(elevio_stopButton()){
             elevio_motorDirection(DIRN_STOP);
+
+            for(int f = 0; f < N_FLOORS; f++){
+                for(int b = 0; b < N_BUTTONS; b++){
+                    printf("%d ", matrise[f][b]);
+                }
+            }
+
+
             break;
         }
 
