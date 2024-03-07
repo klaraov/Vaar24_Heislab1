@@ -4,12 +4,15 @@
 #include <time.h>
 #include "driver/elevio.h"
 
+#define ROWS 4
+#define COLS 3
+
 struct Request{
     int floorTo;
     int direction;
 };
 
-int matrise[4][3] = {0};
+int matrise[ROWS][COLS] = {0};
 printf("%d ", matrise[0][0]);
 
 int main(){
