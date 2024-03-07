@@ -57,27 +57,32 @@ int main(){
                                     printf("%d ", matrise[f][b]);
                                 }
                                 printf("\n");
+                               
                             }
+                            break;
                         }
-                        //if(0 <= floor && floor <= (N_FLOORS-1)){
-                        if (floor > f){
-                            elevio_motorDirection(DIRN_DOWN);
-                        }
+                        
+                        if(0 <= floor && floor <= (N_FLOORS-1)){
+                            
+                            while(floor > f){
+                                elevio_motorDirection(DIRN_DOWN);
+                            }
 
-                        if (floor < f){
-                            elevio_motorDirection(DIRN_UP);
-                        }
-                        if(floor == f){
-                            elevio_motorDirection(DIRN_STOP);
-                            elevio_buttonLamp(f, b, 0);
-                            elevio_doorOpenLamp(1);
-                            nanosleep(&(struct timespec){3, 0}, NULL);
-                            elevio_doorOpenLamp(0);
-                            matrise[f][b] = 0;
+                            while(floor < f){
+                                elevio_motorDirection(DIRN_UP);
+                            }
                             
-                        }
+                            if(floor == f){
+                                elevio_motorDirection(DIRN_STOP);
+                                elevio_buttonLamp(f, b, 0);
+                                elevio_doorOpenLamp(1);
+                                nanosleep(&(struct timespec){3, 0}, NULL);
+                                elevio_doorOpenLamp(0);
+                                matrise[f][b] = 0;
+                                
+                            }
                             
-                        //}                    
+                        }                    
                     }
                 }
             }
