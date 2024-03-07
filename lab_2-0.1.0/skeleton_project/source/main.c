@@ -34,8 +34,6 @@ int main(){
         }
 
 
-
-        for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
                 
 
@@ -48,14 +46,16 @@ int main(){
                     matrise[f][b] = 1;
                     
                     if(matrise[f][b] == 1){
-                        if (floor < f){
-                            elevio_motorDirection(DIRN_UP);
-                        }
-
+                        
                         if (floor > f){
                             elevio_motorDirection(DIRN_DOWN);
                         }
 
+                        if (floor < f){
+                            elevio_motorDirection(DIRN_UP);
+                        }
+
+                      
                         if(floor == f){
                             elevio_motorDirection(DIRN_STOP);
                             elevio_buttonLamp(f, b, 0);
