@@ -50,6 +50,7 @@ int main(){
                     while(matrise[f][b] == 1){
 
                         floor = elevio_floorSensor();
+                        
 
 
                         if(elevio_stopButton()){
@@ -66,6 +67,8 @@ int main(){
                         }
                         
                         if(0 <= floor && floor <= (N_FLOORS-1)){
+                            
+                            elevio_floorIndicator(floor);
                             
                             if(floor > f){
                                 elevio_motorDirection(DIRN_DOWN);
