@@ -49,6 +49,21 @@ int main(){
                     matrise[f][b] = 1;
                     
                     while(matrise[f][b] == 1){
+
+                        if(elevio_stopButton()){
+                            elevio_motorDirection(DIRN_STOP);
+
+                            for(int f = 0; f < N_FLOORS; f++){
+                                for(int b = 0; b < N_BUTTONS; b++){
+                                    printf("%d ", matrise[f][b]);
+                                }
+                                printf("\n");
+                            }
+
+
+                            break;
+                        }
+
                         
                         if(0 <= floor && floor <= (N_FLOORS-1)){
                             
