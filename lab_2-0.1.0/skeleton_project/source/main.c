@@ -30,7 +30,6 @@ int main(){
         int floor = elevio_floorSensor();
 
         if(0 <= floor && floor <= (N_FLOORS-1)){
-
             elevio_floorIndicator(floor);
         }
 
@@ -48,7 +47,7 @@ int main(){
                     elevio_buttonLamp(f, b, 1);
                     matrise[f][b] = 1;
                     
-                    if(matrise[f][b] == 1){
+                    while(matrise[f][b] != NULL){
 
                         if(elevio_stopButton()){
                             elevio_motorDirection(DIRN_STOP);
@@ -65,7 +64,6 @@ int main(){
 
                         
                         if(0 <= floor && floor <= (N_FLOORS-1)){
-                            
                             if (floor > f){
                                 elevio_motorDirection(DIRN_DOWN);
                             }
@@ -75,7 +73,7 @@ int main(){
                             }
 
 
-                            if(floor == f){
+                            if( matrise[f][b] && floor == f){
                                 elevio_motorDirection(DIRN_STOP);
                                 elevio_buttonLamp(f, b, 0);
                                 elevio_doorOpenLamp(1);
@@ -84,6 +82,7 @@ int main(){
                                 matrise[f][b] = 0;
                                 
                             }
+                            
                         }                    
                     }
                 }
