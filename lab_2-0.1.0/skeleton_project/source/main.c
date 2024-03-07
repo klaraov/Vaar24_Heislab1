@@ -7,11 +7,6 @@
 #define ROWS 4
 #define COLS 3
 
-struct Request{
-    int floorTo;
-    int direction;
-};
-
 int matrise[ROWS][COLS] = {0};
 
 
@@ -53,22 +48,16 @@ int main(){
                 if(btnPressed == 1 && btnPressed == btnPressedAfterDelay){
                     elevio_buttonLamp(f, b, 1);
                     matrise[f][b] = 1;
-                    struct Request r;
-                    r.floorTo = f;
-                    if(floor>f){
-                        r.direction = DIRN_DOWN;
-                    }
-                    if(floor<f){
-                        r.direction = DIRN_UP;
-                    }
-
-                    if(floor == r.floorTo){
-                        elevio_motorDirection(DIRN_STOP);
-                        elevio_buttonLamp(f, b, 0);
-                        elevio_doorOpenLamp(1);
-                        nanosleep(&(struct timespec){3, 0}, NULL);
-                        elevio_doorOpenLamp(0);
-                        elevio_motorDirection(DIRN_UP);
+                    
+                    if(elevio_motorDirection == DIRN_UP && matrise[f][0]){
+                        if(floor == f){
+                            elevio_motorDirection(DIRN_STOP);
+                            elevio_buttonLamp(f, b, 0);
+                            elevio_doorOpenLamp(1);
+                            nanosleep(&(struct timespec){3, 0}, NULL);
+                            elevio_doorOpenLamp(0);
+                            elevio_motorDirection(DIRN_UP);
+                        }
                     }
                 }
                 //elevio_buttonLamp(f, b, btnPressed);
