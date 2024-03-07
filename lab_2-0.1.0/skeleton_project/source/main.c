@@ -17,13 +17,12 @@ int main(){
     printf("Press the stop button on the elevator panel to exit\n");
     printf("%d ", matrise[0][0]);
 
-   // elevio_motorDirection(DIRN_UP);
+
     for(int f = 0; f < N_FLOORS; f++){
         for(int b = 0; b < N_BUTTONS; b++){
             elevio_buttonLamp(f, b, 0);
         }
     }
-
 
 
     while(1){
@@ -80,6 +79,7 @@ int main(){
 
         if(elevio_obstruction()){
             elevio_stopLamp(1);
+            elevio_motorDirection(DIRN_STOP);
         } else {
             elevio_stopLamp(0);
         }
