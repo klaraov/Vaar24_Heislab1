@@ -54,7 +54,7 @@ int main(){
                             elevio_motorDirection(DIRN_UP);
                         }
 
-                        if (floor > f){
+                        if (floor < f){
                             elevio_motorDirection(DIRN_DOWN);
                         }
 
