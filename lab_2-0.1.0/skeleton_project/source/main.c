@@ -24,8 +24,6 @@ int main(){
         }
     }
 
-./
-
 
     while(1){
 
@@ -50,9 +48,9 @@ int main(){
                     elevio_buttonLamp(f, b, 1);
                     matrise[f][b] = 1;
                     
-                    while(matrise[f][b] == 1){
+                    if(matrise[f][b] == 1){
                         
-                        if(0 <= floor && floor <= (N_FLOORS-1)){
+                        while(0 <= floor && floor <= (N_FLOORS-1)){
                             
                             if (floor > f){
                                 elevio_motorDirection(DIRN_DOWN);
