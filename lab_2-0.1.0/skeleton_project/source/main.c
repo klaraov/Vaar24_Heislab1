@@ -49,30 +49,29 @@ int main(){
                     
                     if(matrise[f][b] == 1){
                         
-                        if (floor > f){
-                            elevio_motorDirection(DIRN_DOWN);
-                        }
-
-                        if (floor < f){
-                            elevio_motorDirection(DIRN_UP);
-                        }
-
-
-                        if(floor == f){
-                            elevio_motorDirection(DIRN_STOP);
-                            elevio_buttonLamp(f, b, 0);
-                            elevio_doorOpenLamp(1);
-                            nanosleep(&(struct timespec){3, 0}, NULL);
-                            elevio_doorOpenLamp(0);
-                            matrise[f][b] = 0;
+                        if(0 <= floor && floor <= (N_FLOORS-1)){
                             
-                        }
-                    }
+                            if (floor > f){
+                                elevio_motorDirection(DIRN_DOWN);
+                            }
 
+                            if (floor < f){
+                                elevio_motorDirection(DIRN_UP);
+                            }
+
+
+                            if(floor == f){
+                                elevio_motorDirection(DIRN_STOP);
+                                elevio_buttonLamp(f, b, 0);
+                                elevio_doorOpenLamp(1);
+                                nanosleep(&(struct timespec){3, 0}, NULL);
+                                elevio_doorOpenLamp(0);
+                                matrise[f][b] = 0;
+                                
+                            }
+                        }                    
+                    }
                 }
-                
-              
-                //elevio_buttonLamp(f, b, btnPressed);
             }
         }
 
