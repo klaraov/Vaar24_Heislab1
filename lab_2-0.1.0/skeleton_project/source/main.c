@@ -64,7 +64,8 @@ int main(){
                             elevio_doorOpenLamp(1);
                             nanosleep(&(struct timespec){3, 0}, NULL);
                             elevio_doorOpenLamp(0);
-                            elevio_motorDirection(DIRN_UP);
+                            matrise[f][b] = 0;
+                            
                         }
                     }
 
