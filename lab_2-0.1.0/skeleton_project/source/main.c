@@ -23,7 +23,7 @@ int main(){
 
         int floor = elevio_floorSensor();
 
-        if(0 <= floor <= (N_FLOORS-1)){
+        if(0 <= floor && floor <= (N_FLOORS-1)){
      //       elevio_motorDirection(DIRN_UP);
             elevio_floorIndicator(floor);
         }
