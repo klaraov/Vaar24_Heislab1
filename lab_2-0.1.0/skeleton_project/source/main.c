@@ -60,14 +60,6 @@ int main(){
                                 for(int b = 0; b < N_BUTTONS; b++){
                                     printf("%d ", matrise[f][b]);
                                     
-                                    int btnPressed = elevio_callButton(f, b);
-                                    for (int i = 0; i < 1000; ++i) {}
-                                    int btnPressedAfterDelay = elevio_callButton(f, b);
-
-                                    if(btnPressed == 1 && btnPressed == btnPressedAfterDelay){
-                                        elevio_buttonLamp(f, b, 1);
-                                        matrise[f][b] = 1;
-                                    }
                                 }
                                 printf("\n");
                                
