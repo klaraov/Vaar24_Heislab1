@@ -31,6 +31,22 @@ void knapp(int f, int b){
     }
 }
 
+void stoppknapp(){
+     if(elevio_stopButton()){
+        elevio_motorDirection(DIRN_STOP);
+
+        for(int f = 0; f < N_FLOORS; f++){
+            for(int b = 0; b < N_BUTTONS; b++){
+                printf("%d ", matrise[f][b]);       
+            }
+            printf("\n");   
+        }
+        break;
+    }
+
+
+}
+
 int main(){
     elevio_init();
     
@@ -46,11 +62,14 @@ int main(){
     
   
     int floor = elevio_floorSensor();
+    printf("%d ", floor);   
+
     int startfloor = floor -1;
     
     while(1){
         elevio_motorDirection(DIRN_DOWN);
         floor = elevio_floorSensor();
+        stoppknapp();
         if (floor == startfloor){
             elevio_motorDirection(DIRN_STOP);
             break;
