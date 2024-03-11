@@ -83,31 +83,35 @@ int main(){
                         if(floor > f){
                             
                             elevio_motorDirection(DIRN_DOWN);
-                            
-                            if (matrise[floor][1]== 1){
-                                elevio_motorDirection(DIRN_STOP);
-                                elevio_buttonLamp(floor, 1, 0);
-                                elevio_doorOpenLamp(1);
-                                nanosleep(&(struct timespec){3, 0}, NULL);
-                                elevio_doorOpenLamp(0);
-                                matrise[floor][1] = 0;
-                                
+
+                            for (int i =1; i<3; i++;){
+
+                                if (matrise[floor][i]== 1){
+                                    elevio_motorDirection(DIRN_STOP);
+                                    elevio_buttonLamp(floor, i, 0);
+                                    elevio_doorOpenLamp(1);
+                                    nanosleep(&(struct timespec){3, 0}, NULL);
+                                    elevio_doorOpenLamp(0);
+                                    matrise[floor][i] = 0;
+                                    
+                                }
                             }
                         }
 
                         if(floor < f){
                             
                             elevio_motorDirection(DIRN_UP);
-
-                            if (matrise[floor][0]== 1){
+                            
+                            for (int i = 0; i<3; i+=2;){
+                                if (matrise[floor][i]== 1){
                                 elevio_motorDirection(DIRN_STOP);
-                                elevio_buttonLamp(floor, 0, 0);
+                                elevio_buttonLamp(floor, i, 0);
                                 elevio_doorOpenLamp(1);
                                 nanosleep(&(struct timespec){3, 0}, NULL);
                                 elevio_doorOpenLamp(0);
-                                matrise[floor][0] = 0;
-                                
-                            }
+                                matrise[floor][i] = 0;
+                                }
+                            }   
                         }
                         
                         if(floor == f){
