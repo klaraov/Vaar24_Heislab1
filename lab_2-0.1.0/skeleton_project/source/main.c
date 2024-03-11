@@ -77,6 +77,7 @@ int main(){
             break;
         }*/
     }
+    elevio_motorDirection(DIRN_STOP);
 
     while(1){
 
