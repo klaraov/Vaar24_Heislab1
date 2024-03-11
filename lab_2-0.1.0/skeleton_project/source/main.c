@@ -52,12 +52,18 @@ int main(){
                     floor = elevio_floorSensor();
 
 
-                    btnPressed = elevio_callButton(f, b);
-                    nanosleep(&(struct timespec){0, 2}, NULL);
-                    btnPressedAfterDelay = elevio_callButton(f, b);
-                    if (btnPressed && btnPressed == btnPressedAfterDelay){
-                        elevio_buttonLamp(f, b, btnPressed);
-                    }
+                    for(int f = 0; f < N_FLOORS; f++){
+                        for(int b = 0; b < N_BUTTONS; b++){
+                            
+
+
+                            btnPressed = elevio_callButton(f, b);
+                            nanosleep(&(struct timespec){0, 2}, NULL);
+                            btnPressedAfterDelay = elevio_callButton(f, b);
+                            if (btnPressed && btnPressed == btnPressedAfterDelay){
+                                elevio_buttonLamp(f, b, btnPressed);
+                            }
+                        }
 
 
                     if(elevio_stopButton()){
