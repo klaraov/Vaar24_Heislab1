@@ -21,7 +21,7 @@ void heisFremme(int f, int b){
     matrise[f][b] = 0;
 }
 
-void knapp(){
+void knapp(int f, int b){
     int btnPressed = elevio_callButton(f, b);
     nanosleep(&(struct timespec){0, 2}, NULL);
     int btnPressedAfterDelay = elevio_callButton(f, b);
@@ -57,7 +57,7 @@ int main(){
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
                 
-                knapp();
+                knapp(f,b);
                 
                 while(matrise[f][b] == 1){
 
@@ -66,7 +66,7 @@ int main(){
 
                     for(int f = 0; f < N_FLOORS; f++){
                         for(int b = 0; b < N_BUTTONS; b++){
-                           knapp();
+                           knapp(f,b);
                         }
                     }
 
