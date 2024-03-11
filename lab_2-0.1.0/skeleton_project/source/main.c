@@ -30,10 +30,15 @@ void printMatrise(){
 
 }
 
-void klokke(){
-    clock_t start_time = clock();
+void klokke() {
+    time_t start_time = time(NULL);
 
-    while ((clock() - start_time) / (double)CLOCKS_PER_SEC < 3.0) {
+    while ((time(NULL) - start_time) < 3) {
+        for (int f = 0; f < ROWS; f++) {
+            for (int b = 0; b < COLS; b++) {
+                knapp(f, b);
+            }
+        }
     }
 }
 
