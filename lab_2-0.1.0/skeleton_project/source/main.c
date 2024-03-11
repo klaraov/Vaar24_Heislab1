@@ -52,6 +52,14 @@ int main(){
                     floor = elevio_floorSensor();
 
 
+                    btnPressed = elevio_callButton(f, b);
+                    nanosleep(&(struct timespec){0, 2}, NULL);
+                    btnPressedAfterDelay = elevio_callButton(f, b);
+                    if (btnPressed && btnPressed == btnPressedAfterDelay){
+                        elevio_buttonLamp(f, b, btnPressed);
+                    }
+
+
                     if(elevio_stopButton()){
                         elevio_motorDirection(DIRN_STOP);
 
