@@ -40,8 +40,12 @@ int main(){
                 
 
                 int btnPressed = elevio_callButton(f, b);
-                elevio_buttonLamp(f, b, btnPressed);
-                matrise[f][b] = btnPressed;
+                nanosleep(&(struct timespec){0, 2}, NULL);
+                int btnPressedAfterDelay = elevio_callButton(f, b);
+                if (btnPressed && btnPressed == btnPressedAfterDelay){
+                    elevio_buttonLamp(f, b, btnPressed);
+                    matrise[f][b] = btnPressed;
+                }
                 /*
                 while(matrise[f][b] == 1){
 
