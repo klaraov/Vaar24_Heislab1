@@ -42,7 +42,7 @@ int main(){
                 int btnPressed = elevio_callButton(f, b);
                 elevio_buttonLamp(f, b, btnPressed);
                 matrise[f][b] = btnPressed;
-                
+                /*
                 while(matrise[f][b] == 1){
 
                     floor = elevio_floorSensor();
@@ -82,7 +82,7 @@ int main(){
                             
                         }                  
                     }
-                }
+                }*/
             }
         }
 
