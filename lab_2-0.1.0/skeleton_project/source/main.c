@@ -84,7 +84,7 @@ int main(){
                             
                             elevio_motorDirection(DIRN_DOWN);
                             
-                            if matrise [floor][1]== 1{
+                            if matrise[floor][1]== 1{
                                 elevio_motorDirection(DIRN_STOP);
                                 elevio_buttonLamp(floor, 1, 0);
                                 elevio_doorOpenLamp(1);
