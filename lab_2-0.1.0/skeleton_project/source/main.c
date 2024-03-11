@@ -35,17 +35,16 @@ void klokke(){
     clock_t elapsed_time;
 
     // Run code during the waiting period
-    for(int f = 0; f < N_FLOORS; f++){
-        for(int b = 0; b < N_BUTTONS; b++){
-            knapp(f,b);
-        }
-    }
 
     // Wait for 3 seconds
     while (1) {
         elapsed_time = clock() - start_time;
         double seconds = ((double)elapsed_time) / CLOCKS_PER_SEC;
-
+        for(int f = 0; f < N_FLOORS; f++){
+            for(int b = 0; b < N_BUTTONS; b++){
+                knapp(f,b);
+            }
+        }
         if (seconds >= 3.0) {
             break;
         }
