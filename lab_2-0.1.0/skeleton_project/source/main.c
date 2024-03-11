@@ -44,13 +44,14 @@ int main(){
         }
     }
     
-    int startfloor = elevio_floorSensor();
-
+  
+    int floor = elevio_floorSensor();
+    int startfloor = floor -1;
     
     while(1){
         elevio_motorDirection(DIRN_DOWN);
-        int floor = elevio_floorSensor();
-        if (floor == (startfloor-1)){
+        floor = elevio_floorSensor();
+        if (floor == startfloor){
             elevio_motorDirection(DIRN_STOP);
             break;
         }
