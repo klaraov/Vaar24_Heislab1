@@ -50,6 +50,7 @@ int main(){
         elevio_motorDirection(DIRN_DOWN);
         floor = elevio_floorSensor();
         if (floor == 0){
+            elevio_motorDirection(DIRN_STOP);
             break;
         }
     }
