@@ -7,9 +7,6 @@
 #define ROWS 4
 #define COLS 3
 
-
-
-
 int matrise[ROWS][COLS] = {0};
 
 
@@ -34,29 +31,27 @@ void printMatrise(){
 }
 
 void klokke(){
-    struct timespec sleep_interval;
+    struct timespec sleep_time;
     struct timespec remaining_time;
-    int total_seconds = 3;
-    int remaining_seconds;
 
-    sleep_interval.tv_sec = 0;
-    sleep_interval.tv_nsec = 100000000;
+    // Set sleep time to 3 seconds
+    sleep_time.tv_sec = 3;
+    sleep_time.tv_nsec = 0;
 
-    remaining_seconds = total_seconds;
-
-    while (remaining_seconds > 0){
-        if (nanosleep(&sleep_interval, &remaining_time) == -1) {
-            printf("Sleep interrupted. Remaining time: %ld seconds, %ld nanoseconds\n",
-                   remaining_time.tv_sec, remaining_time.tv_nsec);
-            sleep_interval = remaining_time;
-            } else {
-            for(int f = 0; f < N_FLOORS; f++){
-            for(int b = 0; b < N_BUTTONS; b++){
-                knapp(f,b);
-            }
+    // Run code during the waiting period
+    for(int f = 0; f < N_FLOORS; f++){
+        for(int b = 0; b < N_BUTTONS; b++){
+            knapp(f,b);
         }
-            remaining_seconds--;
-        }
+    }
+
+    // Wait for 3 seconds
+    while (nanosleep(&sleep_time, &remaining_time) == -1) {
+        // If interrupted, handle the remaining time
+        printf("Sleep interrupted. Remaining time: %ld seconds, %ld nanoseconds\n",
+               remaining_time.tv_sec, remaining_time.tv_nsec);
+        // Sleep for the remaining time
+        sleep_time = remaining_time;
     }
 }
 
