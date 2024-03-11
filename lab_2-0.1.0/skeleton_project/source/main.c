@@ -38,7 +38,7 @@ void klokke(){
     time_t start, slutt;
     start = time(NULL);
 
-    while (difftime(slutt,start)< 3.0){
+    while (difftime(slutt,start)< 3){
          
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
