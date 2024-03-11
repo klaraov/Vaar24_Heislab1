@@ -43,11 +43,16 @@ int main(){
             elevio_buttonLamp(f, b, 0);
         }
     }
-
+    
+    int floor = elevio_floorSensor();
+    
+    while(floor != 0 && floor !=1 && floor !=2 && floor !=3){
+        MotorDirection(DIRN_DOWN);
+    }
 
     while(1){
 
-        int floor = elevio_floorSensor();
+        floor = elevio_floorSensor();
 
         if(0 <= floor && floor <= (N_FLOORS-1)){
             elevio_floorIndicator(floor);
