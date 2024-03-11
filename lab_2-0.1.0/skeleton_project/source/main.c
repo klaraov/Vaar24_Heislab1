@@ -31,27 +31,26 @@ void printMatrise(){
 }
 
 void klokke(){
-    struct timespec sleep_time;
-    struct timespec remaining_time;
+    int total_seconds = 3;
+    time_t start_time, current_time;
+    int elapsed_seconds = 0;
 
-    // Set sleep time to 3 seconds
-    sleep_time.tv_sec = 3;
-    sleep_time.tv_nsec = 0;
+    // Get the current time
+    time(&start_time);
 
-    // Run code during the waiting period
-    for(int f = 0; f < N_FLOORS; f++){
-        for(int b = 0; b < N_BUTTONS; b++){
-            knapp(f,b);
+    // Run the code you want to execute during the sleep
+    printf("Running code during the 3-second wait...\n");
+    for (int f = 0; f < N_FLOORS; f++) {
+        for (int b = 0; b < N_BUTTONS; b++) {
+            knapp(f, b);
         }
     }
 
     // Wait for 3 seconds
-    while (nanosleep(&sleep_time, &remaining_time) == -1) {
-        // If interrupted, handle the remaining time
-        printf("Sleep interrupted. Remaining time: %ld seconds, %ld nanoseconds\n",
-               remaining_time.tv_sec, remaining_time.tv_nsec);
-        // Sleep for the remaining time
-        sleep_time = remaining_time;
+    while (elapsed_seconds < total_seconds) {
+        // Check current time
+        time(&current_time);
+        elapsed_seconds = difftime(current_time, start_time);
     }
 }
 
