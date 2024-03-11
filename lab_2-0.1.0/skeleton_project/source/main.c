@@ -32,7 +32,7 @@ void knapp(int f, int b){
 }
 
 void stoppknapp(){
-     if(elevio_stopButton()){
+     
         elevio_motorDirection(DIRN_STOP);
 
         for(int f = 0; f < N_FLOORS; f++){
@@ -41,9 +41,6 @@ void stoppknapp(){
             }
             printf("\n");   
         }
-        break;
-    }
-
 
 }
 
@@ -69,7 +66,11 @@ int main(){
     while(1){
         elevio_motorDirection(DIRN_DOWN);
         floor = elevio_floorSensor();
-        stoppknapp();
+        if(elevio_stopButton){
+            stoppknapp();
+            break;
+        }
+        
         if (floor == startfloor){
             elevio_motorDirection(DIRN_STOP);
             break;
