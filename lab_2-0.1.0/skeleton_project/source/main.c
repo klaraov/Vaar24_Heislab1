@@ -64,7 +64,7 @@ int main(){
                                 elevio_buttonLamp(f, b, btnPressed);
                             }
                         }
-
+                    }
 
                     if(elevio_stopButton()){
                         elevio_motorDirection(DIRN_STOP);
