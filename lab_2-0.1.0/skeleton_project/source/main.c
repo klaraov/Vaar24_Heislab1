@@ -46,20 +46,16 @@ int main(){
                 while(matrise[f][b] == 1){
 
                     floor = elevio_floorSensor();
-                    btnPressed = elevio_callButton(f, b);
-                    elevio_buttonLamp(f, b, btnPressed);
-                    matrise[f][b] = btnPressed;
-                    
+
+
                     if(elevio_stopButton()){
                         elevio_motorDirection(DIRN_STOP);
 
                         for(int f = 0; f < N_FLOORS; f++){
                             for(int b = 0; b < N_BUTTONS; b++){
-                                printf("%d ", matrise[f][b]);
-                                
+                                printf("%d ", matrise[f][b]);       
                             }
-                            printf("\n");
-                            
+                            printf("\n");   
                         }
                         break;
                     }
