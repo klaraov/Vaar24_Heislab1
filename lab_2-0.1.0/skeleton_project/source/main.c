@@ -66,7 +66,7 @@ int main(){
     while(1){
         elevio_motorDirection(DIRN_DOWN);
         floor = elevio_floorSensor();
-        if(elevio_stopButton){
+        if(elevio_stopButton()){
             stoppknapp();
             break;
         }
@@ -82,12 +82,14 @@ int main(){
         floor = elevio_floorSensor();
 
         if(0 <= floor && floor <= (N_FLOORS-1)){
-            elevio_floorIndicator(floor);
-        }
+                while(matrise[f][b] == 1){
+
+                    floor = elevio_floorSensor();
+
+                    if(elevio_stopButton()){
+                        elevio_motorDirection(DIRN_STOP);
 
 
-        for(int f = 0; f < N_FLOORS; f++){
-            for(int b = 0; b < N_BUTTONS; b++){
                 
                 knapp(f,b);
                 
