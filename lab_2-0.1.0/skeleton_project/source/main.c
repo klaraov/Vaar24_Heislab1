@@ -34,7 +34,6 @@ void printMatrise(){
 }
 
 void klokke(){
-  //  double tid= 0.0;
     time_t start = time(NULL);
     time_t slutt = time(NULL);
 
@@ -46,10 +45,6 @@ void klokke(){
             }
         }
         slutt = time(NULL);
-
-//        end_tid = clock();
-   //     tid= (double)(end_tid-start_tid) / CLOCKS_PER_SEC;
-
     }
 }
 
@@ -64,10 +59,6 @@ void heisFremme(int f, int b){
 
 int main(){
 
-    klokke();
-    printf("=== Example Program ===\n");
-    klokke();
-    /*
 
     elevio_init();
     
@@ -179,7 +170,6 @@ int main(){
 
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
        
-    } */
-
+    } 
     return 0;
 }
