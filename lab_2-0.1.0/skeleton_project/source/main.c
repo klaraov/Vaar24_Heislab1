@@ -14,7 +14,7 @@ void rightFloor(int floor, int i){
         elevio_motorDirection(DIRN_STOP);
         elevio_buttonLamp(floor, i, 0);
         elevio_doorOpenLamp(1);
-        for(int i = 0; i < 200; i++){buttonIsPressed();}
+        nanosleep(&(struct timespec){0, 2}, NULL);
         elevio_doorOpenLamp(0);
         matrise[floor][i] = 0;
         
