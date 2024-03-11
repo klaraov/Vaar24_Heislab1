@@ -57,8 +57,8 @@ int main(){
         }
     }
     
-  
-    int floor = elevio_floorSensor();
+    int floor = 1;
+    floor = elevio_floorSensor();
     printf("%d ", floor);   
 
 //    int startfloor = floor -1;
