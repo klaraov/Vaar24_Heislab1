@@ -31,21 +31,28 @@ void knapp(int f, int b){
     }
 }
 
-void stoppknapp(){
-     
-        elevio_motorDirection(DIRN_STOP);
-
-        for(int f = 0; f < N_FLOORS; f++){
-            for(int b = 0; b < N_BUTTONS; b++){
-                printf("%d ", matrise[f][b]);       
-            }
-            printf("\n");   
+void printMatrise(){     
+    for(int f = 0; f < N_FLOORS; f++){
+        for(int b = 0; b < N_BUTTONS; b++){
+            printf("%d ", matrise[f][b]);       
         }
+        printf("\n");   
+    }
 
 }
 
 int main(){
-    elevio_init();
+
+    double tid;
+    clock_t start_time, end_time;
+
+    while (tid < 3.0){
+        end_time = clock();
+        total_time = (double)(end_time-start_time) / CLOCKS_PER_SEC;
+
+    }
+
+   /*elevio_init();
     
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
@@ -112,7 +119,6 @@ int main(){
                             elevio_motorDirection(DIRN_DOWN);
 
                             for (int i =1; i<3; i++){
-
                                 if (matrise[floor][i]== 1){
                                     heisFremme(floor, i);
                                 }
@@ -143,10 +149,10 @@ int main(){
 
 
         if(elevio_obstruction()){
-            elevio_stopLamp(1);
+          //  elevio_stopLamp(1);
 
         } else {
-            elevio_stopLamp(0);
+            // elevio_stopLamp(0);
         }
 
         if(elevio_stopButton()){
@@ -155,7 +161,8 @@ int main(){
         }
 
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
-    }
+       
+    } */ 
 
     return 0;
 }
