@@ -43,6 +43,9 @@ int main(){
         if(0 <= floor && floor <= (N_FLOORS-1)){
             elevio_floorIndicator(floor);
         }
+        else{
+            MotorDirection(DIRN_DOWN);
+        }
 
 
 
