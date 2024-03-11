@@ -9,9 +9,22 @@
 
 
 
+
+int matrise[ROWS][COLS] = {0};
+
+void heisFremme(int f, int b){
+    elevio_motorDirection(DIRN_STOP);
+    elevio_buttonLamp(f, b, 0);
+    elevio_doorOpenLamp(1);
+    nanosleep(&(struct timespec){3, 0}, NULL);
+    elevio_doorOpenLamp(0);
+    matrise[f][b] = 0;
+}
+
+
 int main(){
     elevio_init();
-    int matrise[ROWS][COLS] = {0};
+    
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
    
@@ -85,13 +98,7 @@ int main(){
                             for (int i =1; i<3; i++){
 
                                 if (matrise[floor][i]== 1){
-                                    elevio_motorDirection(DIRN_STOP);
-                                    elevio_buttonLamp(floor, i, 0);
-                                    elevio_doorOpenLamp(1);
-                                    nanosleep(&(struct timespec){3, 0}, NULL);
-                                    elevio_doorOpenLamp(0);
-                                    matrise[floor][i] = 0;
-                                    
+                                    heisFremme(floor, i);
                                 }
                             }
                         }
@@ -102,23 +109,13 @@ int main(){
                             
                             for (int i = 0; i<3; i+=2){
                                 if (matrise[floor][i]== 1){
-                                elevio_motorDirection(DIRN_STOP);
-                                elevio_buttonLamp(floor, i, 0);
-                                elevio_doorOpenLamp(1);
-                                nanosleep(&(struct timespec){3, 0}, NULL);
-                                elevio_doorOpenLamp(0);
-                                matrise[floor][i] = 0;
+                                    heisFremme(floor,i);
                                 }
                             }   
                         }
                         
                         if(floor == f){
-                            elevio_motorDirection(DIRN_STOP);
-                            elevio_buttonLamp(f, b, 0);
-                            elevio_doorOpenLamp(1);
-                            nanosleep(&(struct timespec){3, 0}, NULL);
-                            elevio_doorOpenLamp(0);
-                            matrise[f][b] = 0;
+                            heisFremme(f,b);
                             
                         }                  
                     }
