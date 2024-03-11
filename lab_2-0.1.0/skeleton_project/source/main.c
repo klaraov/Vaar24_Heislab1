@@ -62,6 +62,8 @@ int main(){
                             btnPressedAfterDelay = elevio_callButton(f, b);
                             if (btnPressed && btnPressed == btnPressedAfterDelay){
                                 elevio_buttonLamp(f, b, btnPressed);
+                                matrise[f][b] = btnPressed;
+
                             }
                         }
                     }
