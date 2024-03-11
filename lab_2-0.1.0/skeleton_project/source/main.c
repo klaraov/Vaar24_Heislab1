@@ -32,21 +32,13 @@ void printMatrise(){
 
 void klokke(){
     clock_t start_time = clock();
-    clock_t elapsed_time;
 
-    // Run code during the waiting period
-
-    // Wait for 3 seconds
-    while (1) {
+    printf("Running code during the 3-second wait...\n");
+    while ((clock() - start_time) / (double)CLOCKS_PER_SEC < 3.0) {
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
-                knapp(f,b);
+                knapp(f, b);
             }
-        }
-        elapsed_time = clock() - start_time;
-        double seconds = ((double)elapsed_time) / CLOCKS_PER_SEC;
-        if (seconds >= 3.0) {
-            break;
         }
     }
 }
