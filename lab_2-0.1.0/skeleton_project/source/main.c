@@ -72,7 +72,7 @@ int main(){
             break;
         }
         
-        if (floor == startfloor){
+        if (floor == 0){
             elevio_motorDirection(DIRN_STOP);
             break;
         }
