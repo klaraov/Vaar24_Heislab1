@@ -66,6 +66,7 @@ int main(){
     while(1){
         elevio_motorDirection(DIRN_DOWN);
         floor = elevio_floorSensor();
+        printf("%d ", floor);  
         if(elevio_stopButton()){
            // stoppknapp();
             break;
@@ -161,16 +162,7 @@ int main(){
         }
 
         if(elevio_stopButton()){
-            elevio_motorDirection(DIRN_STOP);
-
-            for(int f = 0; f < N_FLOORS; f++){
-                for(int b = 0; b < N_BUTTONS; b++){
-                    printf("%d ", matrise[f][b]);
-                }
-                printf("\n");
-            }
-
-
+           // stoppknapp
             break;
         }
 
