@@ -48,7 +48,7 @@ int main(){
 
     while (tid < 3.0){
         end_time = clock();
-        total_time = (double)(end_time-start_time) / CLOCKS_PER_SEC;
+        tid= (double)(end_time-start_time) / CLOCKS_PER_SEC;
 
     }
 
