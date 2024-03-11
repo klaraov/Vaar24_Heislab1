@@ -16,7 +16,7 @@ void heisFremme(int f, int b){
     elevio_motorDirection(DIRN_STOP);
     elevio_buttonLamp(f, b, 0);
     elevio_doorOpenLamp(1);
-    nanosleep(&(struct timespec){3, 0}, NULL);
+    klokke();
     elevio_doorOpenLamp(0);
     matrise[f][b] = 0;
 }
@@ -41,18 +41,29 @@ void printMatrise(){
 
 }
 
-int main(){
-
+void klokke(){
     double tid= 0.0;
-    clock_t start_time = 0, end_time;
+    clock_t start_tid, end_tid;
 
     while (tid < 3.0){
-        end_time = clock();
-        tid= (double)(end_time-start_time) / CLOCKS_PER_SEC;
+         
+        for(int f = 0; f < N_FLOORS; f++){
+            for(int b = 0; b < N_BUTTONS; b++){
+                knapp(f,b);
+            }
+        }
+
+        end_tid = clock();
+        tid= (double)(end_tid-start_tid) / CLOCKS_PER_SEC;
 
     }
+}
 
-   /*elevio_init();
+int main(){
+
+    
+
+    elevio_init();
     
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
@@ -162,7 +173,7 @@ int main(){
 
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
        
-    } */ 
+    } 
 
     return 0;
 }
