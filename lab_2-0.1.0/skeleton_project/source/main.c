@@ -7,9 +7,47 @@
 #define ROWS 4
 #define COLS 3
 
+int matrise[ROWS][COLS] = {0};
+
+void rightFloor(int floor, int i){
+    if (matrise[floor][i]== 1){
+        elevio_motorDirection(DIRN_STOP);
+        elevio_buttonLamp(floor, i, 0);
+        elevio_doorOpenLamp(1);
+        nanosleep(&(struct timespec){3, 0}, NULL);
+        elevio_doorOpenLamp(0);
+        matrise[floor][i] = 0;
+        
+    }
+}
+
+void stopBtnIsPressed(){
+    elevio_motorDirection(DIRN_STOP);
+    for(int f = 0; f < N_FLOORS; f++){
+        for(int b = 0; b < N_BUTTONS; b++){
+            printf("%d ", matrise[f][b]);       
+        }
+        printf("\n");   
+    }
+}
+
+
+void buttonIsPressed(){
+    for(int f = 0; f < N_FLOORS; f++){
+        for(int b = 0; b < N_BUTTONS; b++){
+            int btnPressed = elevio_callButton(f, b);
+            nanosleep(&(struct timespec){0, 2}, NULL);
+            int btnPressedAfterDelay = elevio_callButton(f, b);
+            if (btnPressed && btnPressed == btnPressedAfterDelay){
+                elevio_buttonLamp(f, b, btnPressed);
+                matrise[f][b] = btnPressed;
+            }
+        }
+    }
+}
+
 int main(){
     elevio_init();
-    int matrise[ROWS][COLS] = {0};
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
    
@@ -29,46 +67,19 @@ int main(){
             elevio_floorIndicator(floor);
         }
 
-
-
+        buttonIsPressed();
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
-                
-
-                int btnPressed = elevio_callButton(f, b);
-                nanosleep(&(struct timespec){0, 2}, NULL);
-                int btnPressedAfterDelay = elevio_callButton(f, b);
-                if (btnPressed && btnPressed == btnPressedAfterDelay){
-                    elevio_buttonLamp(f, b, btnPressed);
-                    matrise[f][b] = btnPressed;
-                }
                 
                 while(matrise[f][b] == 1){
 
                     floor = elevio_floorSensor();
 
 
-                    for(int f = 0; f < N_FLOORS; f++){
-                        for(int b = 0; b < N_BUTTONS; b++){
-                            btnPressed = elevio_callButton(f, b);
-                            nanosleep(&(struct timespec){0, 2}, NULL);
-                            btnPressedAfterDelay = elevio_callButton(f, b);
-                            if (btnPressed && btnPressed == btnPressedAfterDelay){
-                                elevio_buttonLamp(f, b, btnPressed);
-                                matrise[f][b] = btnPressed;
-                            }
-                        }
-                    }
+                    buttonIsPressed();
 
                     if(elevio_stopButton()){
-                        elevio_motorDirection(DIRN_STOP);
-
-                        for(int f = 0; f < N_FLOORS; f++){
-                            for(int b = 0; b < N_BUTTONS; b++){
-                                printf("%d ", matrise[f][b]);       
-                            }
-                            printf("\n");   
-                        }
+                        stopBtnIsPressed();
                         break;
                     }
                     
@@ -81,16 +92,7 @@ int main(){
                             elevio_motorDirection(DIRN_DOWN);
 
                             for (int i =1; i<3; i++){
-
-                                if (matrise[floor][i]== 1){
-                                    elevio_motorDirection(DIRN_STOP);
-                                    elevio_buttonLamp(floor, i, 0);
-                                    elevio_doorOpenLamp(1);
-                                    nanosleep(&(struct timespec){3, 0}, NULL);
-                                    elevio_doorOpenLamp(0);
-                                    matrise[floor][i] = 0;
-                                    
-                                }
+                                rightFloor(floor, i);
                             }
                         }
 
@@ -99,33 +101,17 @@ int main(){
                             elevio_motorDirection(DIRN_UP);
                             
                             for (int i = 0; i<3; i+=2){
-                                if (matrise[floor][i]== 1){
-                                elevio_motorDirection(DIRN_STOP);
-                                elevio_buttonLamp(floor, i, 0);
-                                elevio_doorOpenLamp(1);
-                                nanosleep(&(struct timespec){3, 0}, NULL);
-                                elevio_doorOpenLamp(0);
-                                matrise[floor][i] = 0;
-                                }
+                                rightFloor(floor, i);
                             }   
                         }
                         
                         if(floor == f){
-                            elevio_motorDirection(DIRN_STOP);
-                            elevio_buttonLamp(f, b, 0);
-                            elevio_doorOpenLamp(1);
-                            nanosleep(&(struct timespec){3, 0}, NULL);
-                            elevio_doorOpenLamp(0);
-                            matrise[f][b] = 0;
-                            
+                            rightFloor(f, b);
                         }                  
                     }
                 }
             }
         }
-
-
-
 
         if(elevio_obstruction()){
             elevio_stopLamp(1);
@@ -135,16 +121,7 @@ int main(){
         }
 
         if(elevio_stopButton()){
-            elevio_motorDirection(DIRN_STOP);
-
-            for(int f = 0; f < N_FLOORS; f++){
-                for(int b = 0; b < N_BUTTONS; b++){
-                    printf("%d ", matrise[f][b]);
-                }
-                printf("\n");
-            }
-
-
+            stopBtnIsPressed();
             break;
         }
 
