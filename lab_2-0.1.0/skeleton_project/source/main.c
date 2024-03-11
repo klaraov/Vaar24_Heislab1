@@ -43,7 +43,7 @@ void printMatrise(){
 
 int main(){
 
-    double tid;
+    double tid= 0.0;
     clock_t start_time, end_time;
 
     while (tid < 3.0){
