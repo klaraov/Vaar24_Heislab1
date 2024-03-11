@@ -84,7 +84,7 @@ int main(){
                             
                             elevio_motorDirection(DIRN_DOWN);
 
-                            for (int i =1; i<3; i++;){
+                            for (int i =1; i<3; i++){
 
                                 if (matrise[floor][i]== 1){
                                     elevio_motorDirection(DIRN_STOP);
@@ -102,7 +102,7 @@ int main(){
                             
                             elevio_motorDirection(DIRN_UP);
                             
-                            for (int i = 0; i<3; i+=2;){
+                            for (int i = 0; i<3; i+=2){
                                 if (matrise[floor][i]== 1){
                                 elevio_motorDirection(DIRN_STOP);
                                 elevio_buttonLamp(floor, i, 0);
