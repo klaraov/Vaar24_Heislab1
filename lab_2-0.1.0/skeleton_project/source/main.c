@@ -45,14 +45,12 @@ int main(){
 
                 if(btnPressed == 1 /*&& btnPressed == btnPressedAfterDelay*/){
                     elevio_buttonLamp(f, b, 1);
-                    matrise[f][b] = 1;
+                    matrise[f][b] = btnPressed;
                     
                     while(matrise[f][b] == 1){
 
                         floor = elevio_floorSensor();
-                        
-
-
+                    
                         if(elevio_stopButton()){
                             elevio_motorDirection(DIRN_STOP);
 
