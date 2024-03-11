@@ -35,8 +35,8 @@ void printMatrise(){
 
 void klokke(){
   //  double tid= 0.0;
-    time_t start, slutt;
-    start = time(NULL);
+    time_t start = time(NULL);
+    time_t slutt = time(NULL);
 
     while (difftime(slutt,start)< 3){
          
