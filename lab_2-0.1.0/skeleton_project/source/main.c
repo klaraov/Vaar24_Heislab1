@@ -54,16 +54,12 @@ int main(){
 
                     for(int f = 0; f < N_FLOORS; f++){
                         for(int b = 0; b < N_BUTTONS; b++){
-                            
-
-
                             btnPressed = elevio_callButton(f, b);
                             nanosleep(&(struct timespec){0, 2}, NULL);
                             btnPressedAfterDelay = elevio_callButton(f, b);
                             if (btnPressed && btnPressed == btnPressedAfterDelay){
                                 elevio_buttonLamp(f, b, btnPressed);
                                 matrise[f][b] = btnPressed;
-
                             }
                         }
                     }
@@ -85,7 +81,18 @@ int main(){
                         elevio_floorIndicator(floor);
                         
                         if(floor > f){
+                            
                             elevio_motorDirection(DIRN_DOWN);
+                            
+                            if matrise [floor][1]== 1{
+                                elevio_motorDirection(DIRN_STOP);
+                                elevio_buttonLamp(floor, 1, 0);
+                                elevio_doorOpenLamp(1);
+                                nanosleep(&(struct timespec){3, 0}, NULL);
+                                elevio_doorOpenLamp(0);
+                                matrise[floor][1] = 0;
+                                
+                            }
                         }
 
                         if(floor < f){
