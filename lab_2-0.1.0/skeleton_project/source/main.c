@@ -7,79 +7,126 @@
 #define ROWS 4
 #define COLS 3
 
+
+
+
 int matrise[ROWS][COLS] = {0};
 
-void rightFloor(int floor, int i){
-    if (matrise[floor][i]== 1){
-        elevio_motorDirection(DIRN_STOP);
-        elevio_buttonLamp(floor, i, 0);
-        elevio_doorOpenLamp(1);
-        nanosleep(&(struct timespec){0, 2}, NULL);
-        elevio_doorOpenLamp(0);
-        matrise[floor][i] = 0;
-        
+
+void knapp(int f, int b){
+    int btnPressed = elevio_callButton(f, b);
+    nanosleep(&(struct timespec){0, 2}, NULL);
+    int btnPressedAfterDelay = elevio_callButton(f, b);
+    if (btnPressed && btnPressed == btnPressedAfterDelay){
+        elevio_buttonLamp(f, b, btnPressed);
+        matrise[f][b] = btnPressed;
     }
 }
 
-void stopBtnIsPressed(){
-    elevio_motorDirection(DIRN_STOP);
+void printMatrise(){     
     for(int f = 0; f < N_FLOORS; f++){
         for(int b = 0; b < N_BUTTONS; b++){
             printf("%d ", matrise[f][b]);       
         }
         printf("\n");   
     }
+
 }
 
+void klokke(){
+    struct timespec sleep_interval;
+    struct timespec remaining_time;
+    int total_seconds = 3;
+    int remaining_seconds;
 
-void buttonIsPressed(){
-    for(int f = 0; f < N_FLOORS; f++){
-        for(int b = 0; b < N_BUTTONS; b++){
-            int btnPressed = elevio_callButton(f, b);
-            nanosleep(&(struct timespec){0, 2}, NULL);
-            int btnPressedAfterDelay = elevio_callButton(f, b);
-            if (btnPressed && btnPressed == btnPressedAfterDelay){
-                elevio_buttonLamp(f, b, btnPressed);
-                matrise[f][b] = btnPressed;
+    sleep_interval.tv_sec = 0;
+    sleep_interval.tv_nsec = 100000000;
+
+    remaining_seconds = total_seconds;
+
+    while (remaining_seconds > 0){
+        if (nanosleep(&sleep_interval, &remaining_time) == -1) {
+            printf("Sleep interrupted. Remaining time: %ld seconds, %ld nanoseconds\n",
+                   remaining_time.tv_sec, remaining_time.tv_nsec);
+            sleep_interval = remaining_time;
+            } else {
+            for(int f = 0; f < N_FLOORS; f++){
+            for(int b = 0; b < N_BUTTONS; b++){
+                knapp(f,b);
             }
+        }
+            remaining_seconds--;
         }
     }
 }
 
+void heisFremme(int f, int b){
+    elevio_motorDirection(DIRN_STOP);
+    elevio_buttonLamp(f, b, 0);
+    elevio_doorOpenLamp(1);
+    klokke();
+    elevio_doorOpenLamp(0);
+    matrise[f][b] = 0;
+}
+
 int main(){
+
+
     elevio_init();
+    
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
-    int floor = elevio_floorSensor();
+   
 
     for(int f = 0; f < N_FLOORS; f++){
         for(int b = 0; b < N_BUTTONS; b++){
             elevio_buttonLamp(f, b, 0);
         }
     }
+    
+    int floor = elevio_floorSensor();
 
+    while(floor == -1){
+        elevio_motorDirection(DIRN_DOWN);
+        floor = elevio_floorSensor();
+    }
+    
+    elevio_motorDirection(DIRN_STOP);
 
     while(1){
 
-        int floor = elevio_floorSensor();
+        floor = elevio_floorSensor();
 
         if(0 <= floor && floor <= (N_FLOORS-1)){
             elevio_floorIndicator(floor);
         }
 
-        buttonIsPressed();
+
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
+                
+                knapp(f,b);
                 
                 while(matrise[f][b] == 1){
 
                     floor = elevio_floorSensor();
 
 
-                    buttonIsPressed();
+                    for(int f = 0; f < N_FLOORS; f++){
+                        for(int b = 0; b < N_BUTTONS; b++){
+                           knapp(f,b);
+                        }
+                    }
 
                     if(elevio_stopButton()){
-                        stopBtnIsPressed();
+                        elevio_motorDirection(DIRN_STOP);
+
+                        for(int f = 0; f < N_FLOORS; f++){
+                            for(int b = 0; b < N_BUTTONS; b++){
+                                printf("%d ", matrise[f][b]);       
+                            }
+                            printf("\n");   
+                        }
                         break;
                     }
                     
@@ -92,7 +139,9 @@ int main(){
                             elevio_motorDirection(DIRN_DOWN);
 
                             for (int i =1; i<3; i++){
-                                rightFloor(floor, i);
+                                if (matrise[floor][i]== 1){
+                                    heisFremme(floor, i);
+                                }
                             }
                         }
 
@@ -101,12 +150,15 @@ int main(){
                             elevio_motorDirection(DIRN_UP);
                             
                             for (int i = 0; i<3; i+=2){
-                                rightFloor(floor, i);
+                                if (matrise[floor][i]== 1){
+                                    heisFremme(floor,i);
+                                }
                             }   
                         }
                         
                         if(floor == f){
-                            rightFloor(f, b);
+                            heisFremme(f,b);
+                            
                         }                  
                     }
                 }
@@ -114,19 +166,19 @@ int main(){
         }
 
         if(elevio_obstruction()){
-            elevio_stopLamp(1);
+          //  elevio_stopLamp(1);
 
         } else {
-            elevio_stopLamp(0);
+            // elevio_stopLamp(0);
         }
 
         if(elevio_stopButton()){
-            stopBtnIsPressed();
+           // stoppknapp
             break;
         }
 
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
-    }
-
+       
+    } 
     return 0;
 }
