@@ -153,9 +153,6 @@ int main(){
             }
         }
 
-
-
-
         if(elevio_obstruction()){
           //  elevio_stopLamp(1);
 
