@@ -47,7 +47,7 @@ int main(){
     int floor = elevio_floorSensor();
     
     while(floor != 0 && floor !=1 && floor !=2 && floor !=3){
-        MotorDirection(DIRN_DOWN);
+        elevio_motorDirection(DIRN_DOWN);
     }
 
     while(1){
