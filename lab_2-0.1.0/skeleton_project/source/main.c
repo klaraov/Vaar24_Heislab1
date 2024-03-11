@@ -62,7 +62,10 @@ void heisFremme(int f, int b){
 
 int main(){
 
-    
+    klokke();
+    printf("=== Example Program ===\n");
+    klokke();
+    /*
 
     elevio_init();
     
@@ -174,7 +177,7 @@ int main(){
 
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
        
-    } 
+    } */
 
     return 0;
 }
