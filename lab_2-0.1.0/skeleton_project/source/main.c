@@ -96,7 +96,18 @@ int main(){
                         }
 
                         if(floor < f){
+                            
                             elevio_motorDirection(DIRN_UP);
+
+                            if (matrise[floor][0]== 1){
+                                elevio_motorDirection(DIRN_STOP);
+                                elevio_buttonLamp(floor, 0, 0);
+                                elevio_doorOpenLamp(1);
+                                nanosleep(&(struct timespec){3, 0}, NULL);
+                                elevio_doorOpenLamp(0);
+                                matrise[floor][0] = 0;
+                                
+                            }
                         }
                         
                         if(floor == f){
