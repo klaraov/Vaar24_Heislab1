@@ -67,7 +67,7 @@ int main(){
         elevio_motorDirection(DIRN_DOWN);
         floor = elevio_floorSensor();
         if(elevio_stopButton()){
-            stoppknapp();
+           // stoppknapp();
             break;
         }
         
