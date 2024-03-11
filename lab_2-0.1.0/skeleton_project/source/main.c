@@ -12,14 +12,6 @@
 
 int matrise[ROWS][COLS] = {0};
 
-void heisFremme(int f, int b){
-    elevio_motorDirection(DIRN_STOP);
-    elevio_buttonLamp(f, b, 0);
-    elevio_doorOpenLamp(1);
-    klokke();
-    elevio_doorOpenLamp(0);
-    matrise[f][b] = 0;
-}
 
 void knapp(int f, int b){
     int btnPressed = elevio_callButton(f, b);
@@ -57,6 +49,15 @@ void klokke(){
         tid= (double)(end_tid-start_tid) / CLOCKS_PER_SEC;
 
     }
+}
+
+void heisFremme(int f, int b){
+    elevio_motorDirection(DIRN_STOP);
+    elevio_buttonLamp(f, b, 0);
+    elevio_doorOpenLamp(1);
+    klokke();
+    elevio_doorOpenLamp(0);
+    matrise[f][b] = 0;
 }
 
 int main(){
