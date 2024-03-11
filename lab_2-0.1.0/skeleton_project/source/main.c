@@ -31,26 +31,24 @@ void printMatrise(){
 }
 
 void klokke(){
-    int total_seconds = 3;
-    time_t start_time, current_time;
-    int elapsed_seconds = 0;
+    clock_t start_time = clock();
+    clock_t elapsed_time;
 
-    // Get the current time
-    time(&start_time);
-
-    // Run the code you want to execute during the sleep
-    printf("Running code during the 3-second wait...\n");
-    for (int f = 0; f < N_FLOORS; f++) {
-        for (int b = 0; b < N_BUTTONS; b++) {
-            knapp(f, b);
+    // Run code during the waiting period
+    for(int f = 0; f < N_FLOORS; f++){
+        for(int b = 0; b < N_BUTTONS; b++){
+            knapp(f,b);
         }
     }
 
     // Wait for 3 seconds
-    while (elapsed_seconds < total_seconds) {
-        // Check current time
-        time(&current_time);
-        elapsed_seconds = difftime(current_time, start_time);
+    while (1) {
+        elapsed_time = clock() - start_time;
+        double seconds = ((double)elapsed_time) / CLOCKS_PER_SEC;
+
+        if (seconds >= 3.0) {
+            break;
+        }
     }
 }
 
