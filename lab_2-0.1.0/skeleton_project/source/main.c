@@ -21,6 +21,15 @@ void heisFremme(int f, int b){
     matrise[f][b] = 0;
 }
 
+void knapp(){
+    int btnPressed = elevio_callButton(f, b);
+    nanosleep(&(struct timespec){0, 2}, NULL);
+    int btnPressedAfterDelay = elevio_callButton(f, b);
+    if (btnPressed && btnPressed == btnPressedAfterDelay){
+        elevio_buttonLamp(f, b, btnPressed);
+        matrise[f][b] = btnPressed;
+    }
+}
 
 int main(){
     elevio_init();
@@ -43,23 +52,12 @@ int main(){
         if(0 <= floor && floor <= (N_FLOORS-1)){
             elevio_floorIndicator(floor);
         }
-        else{
-            MotorDirection(DIRN_DOWN);
-        }
-
 
 
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
                 
-
-                int btnPressed = elevio_callButton(f, b);
-                nanosleep(&(struct timespec){0, 2}, NULL);
-                int btnPressedAfterDelay = elevio_callButton(f, b);
-                if (btnPressed && btnPressed == btnPressedAfterDelay){
-                    elevio_buttonLamp(f, b, btnPressed);
-                    matrise[f][b] = btnPressed;
-                }
+                knapp();
                 
                 while(matrise[f][b] == 1){
 
@@ -68,13 +66,7 @@ int main(){
 
                     for(int f = 0; f < N_FLOORS; f++){
                         for(int b = 0; b < N_BUTTONS; b++){
-                            btnPressed = elevio_callButton(f, b);
-                            nanosleep(&(struct timespec){0, 2}, NULL);
-                            btnPressedAfterDelay = elevio_callButton(f, b);
-                            if (btnPressed && btnPressed == btnPressedAfterDelay){
-                                elevio_buttonLamp(f, b, btnPressed);
-                                matrise[f][b] = btnPressed;
-                            }
+                           knapp();
                         }
                     }
 
