@@ -34,19 +34,21 @@ void printMatrise(){
 }
 
 void klokke(){
-    double tid= 0.0;
-    clock_t start_tid, end_tid;
+  //  double tid= 0.0;
+    time_t start, slutt;
+    start = time(NULL);
 
-    while (tid < 3.0){
+    while (difftime(slutt,start)< 3.0){
          
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
                 knapp(f,b);
             }
         }
+        slutt = time(NULL);
 
-        end_tid = clock();
-        tid= (double)(end_tid-start_tid) / CLOCKS_PER_SEC;
+//        end_tid = clock();
+   //     tid= (double)(end_tid-start_tid) / CLOCKS_PER_SEC;
 
     }
 }
