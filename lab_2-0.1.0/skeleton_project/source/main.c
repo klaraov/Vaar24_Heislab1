@@ -32,9 +32,13 @@ void printMatrise(){
 
 void klokke(){
     clock_t start_time = clock();
-    printf("%d ", start_time);
+
     while ((clock() - start_time) / (double)CLOCKS_PER_SEC < 3.0) {
-        
+        for(int f = 0; f < N_FLOORS; f++){
+            for(int b = 0; b < N_BUTTONS; b++){
+                knapp(f, b);
+            }
+        }
     }
 }
 
