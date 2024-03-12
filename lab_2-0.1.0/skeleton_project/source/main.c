@@ -99,7 +99,6 @@ void mellomEtasjer(int floor){
 
 }
 
-
 int main(){
 
 
@@ -115,14 +114,22 @@ int main(){
     mellomEtasjer(floor);
     
 
-    while(1){
-        int s1 = elevio_stopButton();
-    
-        while (s1){
-            elevio_stopLamp(1);
-            int s2 = elevio_stopButton();
-            if (s2==0){
 
+    while(1){
+        int stopp1 = elevio_stopButton();
+        nanosleep(&(struct timespec){0, 2}, NULL);
+        int stopp2 = elevio_stopButton();
+        
+        
+    
+        while (stopp1 && stopp2){
+            elevio_stopLamp(1);
+            
+            int s2 = elevio_stopButton();
+            nanosleep(&(struct timespec){0, 2}, NULL);
+            int s1 = elevio_stopButton();
+            
+            if (s2==s1 && s1==0){
                 break;
             }
             if(elevio_obstruction()){
@@ -130,7 +137,7 @@ int main(){
         } 
         
         }
-        //elevio_stopLamp(0);
+        elevio_stopLamp(0);
 
         /*
         floor = elevio_floorSensor();
