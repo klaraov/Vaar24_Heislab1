@@ -26,7 +26,13 @@ void knapp(int f, int b){
 void obstruction(){
     while (elevio_obstruction()){
         elevio_doorOpenLamp(1);
-        knapp();
+        
+        for(int f = 0; f < N_FLOORS; f++){
+            for(int b = 0; b < N_BUTTONS; b++){
+                knapp(f,b);
+            }
+        }
+
     }
 }
 
