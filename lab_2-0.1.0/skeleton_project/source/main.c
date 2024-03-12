@@ -64,10 +64,15 @@ void resetMatrise(){
 }
 
 void stoppKnapp(int floor){
-    if (elevio_stopButton()){
+    int stopp1 = elevio_stopButton();
+    nanosleep(&(struct timespec){0, 2}, NULL);
+    int stopp2 = elevio_stopButton();
+
+    if (stopp1 && stopp2){
         elevio_motorDirection(DIRN_STOP);
         resetMatrise();
-        while (elevio_stopButton()){
+        elevio_stopLamp(1); 
+        while (stopp1 && stopp2){
             elevio_stopLamp(1);     
             if (floor!= -1){
                 elevio_doorOpenLamp(1);
@@ -91,7 +96,6 @@ void mellomEtasjer(int floor){
     elevio_motorDirection(DIRN_STOP);
 
 }
-
 
 
 int main(){
