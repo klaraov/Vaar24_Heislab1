@@ -57,6 +57,7 @@ void heisFremme(int f, int b){
     elevio_doorOpenLamp(1);
     obstruction();
     klokke();
+    obstruction();
     elevio_doorOpenLamp(0);
     matrise[f][b] = 0;
 }
