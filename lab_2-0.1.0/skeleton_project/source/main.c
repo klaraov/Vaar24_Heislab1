@@ -94,6 +94,9 @@ void stoppKnapp(int floor){
                 elevio_doorOpenLamp(1);
             }
             stopp2 = elevio_stopButton();
+            nanosleep(&(struct timespec){0, 2}, NULL);
+            stopp1 = elevio_stopButton();
+    
         }
         stopp2 = elevio_stopButton();
         
