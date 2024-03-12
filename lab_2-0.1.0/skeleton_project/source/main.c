@@ -16,6 +16,7 @@ int matrise[ROWS][COLS] = {0};
 void obstruction(){
     while (elevio_obstruction()){
         elevio_doorOpenLamp(1);
+        knapp();
     }
 }
 
