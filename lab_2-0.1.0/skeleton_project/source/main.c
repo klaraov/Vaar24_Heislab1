@@ -63,8 +63,7 @@ void resetMatrise(){
     }
 }
 
-void stoppKnapp(){
-    int floor = elevio_floorSensor();
+void stoppKnapp(int floor){
     if (elevio_stopButton()){
         elevio_motorDirection(DIRN_STOP);
         resetMatrise();
