@@ -81,10 +81,16 @@ void stoppKnapp(){
     }
    
     elevio_stopLamp(0);
+    
 }
 
-void mellomEtasjer(){
-
+void mellomEtasjer(int floor){
+    while(floor == -1){
+        elevio_motorDirection(DIRN_DOWN);
+        floor = elevio_floorSensor();
+    }
+    
+    elevio_motorDirection(DIRN_STOP);
 
 }
 
@@ -102,12 +108,7 @@ int main(){
     
     int floor = elevio_floorSensor();
 
-    while(floor == -1){
-        elevio_motorDirection(DIRN_DOWN);
-        floor = elevio_floorSensor();
-    }
-    
-    elevio_motorDirection(DIRN_STOP);
+    mellomEtasjer(floor);
 
     while(1){
         floor = elevio_floorSensor();
