@@ -75,7 +75,8 @@ void stoppKnapp(int floor){
         }
 
         if (floor!= -1){
-            heisFremme(0,0);
+            klokke();
+            elevio_doorOpenLamp(0);
         }
     }
     elevio_stopLamp(0);   
