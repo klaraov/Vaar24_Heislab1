@@ -129,7 +129,6 @@ int main(){
                         }
                     }
 
-<<<<<<< HEAD
                  /*  if(elevio_stopButton()){
                         elevio_motorDirection(DIRN_STOP);
                         printMatrise()
@@ -137,9 +136,6 @@ int main(){
                     }
                     */ 
                     stoppKnapp(floor);
-=======
-                    stoppKnapp();
->>>>>>> 24037bfce1840c702f6af0f3e39fc16fa278b409
                     
                     if(0 <= floor && floor <= (N_FLOORS-1)){
                         
@@ -183,14 +179,10 @@ int main(){
             // elevio_stopLamp(0);
         }
 
-<<<<<<< HEAD
      //   if(elevio_stopButton()){
            // stoppknapp
        //     break;
         }
-=======
-        stoppKnapp();
->>>>>>> 24037bfce1840c702f6af0f3e39fc16fa278b409
 
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
        
