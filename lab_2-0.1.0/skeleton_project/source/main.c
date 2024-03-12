@@ -117,8 +117,9 @@ int main(){
 
     while(1){
         int s1 = elevio_stopButton();
+        int s2 = elevio_stopButton();
 
-        while (s1){
+        while (s1 && s1 == s2){
             elevio_stopLamp(1);
             s1 = elevio_stopButton();
 
