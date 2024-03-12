@@ -131,8 +131,8 @@ int main(){
 
     elevio_init();
     
-    printf("=== Example Program ===\n");
-    printf("Press the stop button on the elevator panel to exit\n");
+    printf("=== Selma and Klaras amazing elevator ===\n");
+    printf("There is no exit button, sorry");
    
     resetMatrise();
     
@@ -144,29 +144,7 @@ int main(){
 
     while(1){
       
-        /*
-        while (1){
-            int stopp1 = elevio_stopButton();
-            nanosleep(&(struct timespec){0, 2}, NULL);
-            int stopp2 = elevio_stopButton();
-
-            
-            if (stopp1 && stopp1==stopp2){
-                elevio_stopLamp(1);
-            
-            }
-            
-            else{
-                break;
-            }
-            if(elevio_obstruction()){
-                break;
-            } 
-        
-        }
-        elevio_stopLamp(0);
-        */
-
+      
         
         floor = elevio_floorSensor();
 
@@ -193,12 +171,6 @@ int main(){
                         }
                     }
 
-                 /*  if(elevio_stopButton()){
-                        elevio_motorDirection(DIRN_STOP);
-                        printMatrise()
-                        break;
-                    }
-                    */ 
                     stoppKnapp(floor);
                     
                     
@@ -236,12 +208,7 @@ int main(){
                 }
             }
         }
-        
-
-      //  if(elevio_obstruction()){
-      //      break;
-      //  } 
-        
+      
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
     }
     
