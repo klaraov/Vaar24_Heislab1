@@ -122,19 +122,24 @@ int main(){
         
         
     
-        while (stopp1 && stopp2){
-            elevio_stopLamp(1);
-            
-            int s2 = elevio_stopButton();
+        while (1){
+            int stopp1 = elevio_stopButton();
             nanosleep(&(struct timespec){0, 2}, NULL);
-            int s1 = elevio_stopButton();
+            int stopp2 = elevio_stopButton();
             
-            if (s2==s1 && s1==0){
+            
+            
+            
+            if (stopp1 && stopp1==stopp2){
+                elevio_stopLamp(1);
+            
+            }
+            else{
                 break;
             }
             if(elevio_obstruction()){
                 break;
-        } 
+            } 
         
         }
         elevio_stopLamp(0);
