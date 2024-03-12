@@ -120,7 +120,7 @@ int main(){
     
         while (1){
             int stopp1 = elevio_stopButton();
-            nanosleep(&(struct timespec){0, 2}, NULL);
+            nanosleep(&(struct timespec){0, 10}, NULL);
             int stopp2 = elevio_stopButton();
 
             
@@ -128,6 +128,7 @@ int main(){
                 elevio_stopLamp(1);
             
             }
+            
             else{
                 break;
             }
@@ -136,7 +137,7 @@ int main(){
             } 
         
         }
-        //elevio_stopLamp(0);
+        elevio_stopLamp(0);
 
         /*
         floor = elevio_floorSensor();
