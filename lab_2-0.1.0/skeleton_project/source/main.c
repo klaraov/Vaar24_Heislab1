@@ -62,9 +62,9 @@ void heisFremme(int f, int b){
     elevio_motorDirection(DIRN_STOP);
     elevio_buttonLamp(f, b, 0);
     elevio_doorOpenLamp(1);
-  //  obstruction();
+    obstruction();
     klokke();
-   // obstruction();
+    obstruction();
     elevio_doorOpenLamp(0);
     matrise[f][b] = 0;
 }
@@ -114,12 +114,14 @@ void stoppKnapp(int floor){
 }
 
 void mellomEtasjer(int floor){
-    while(floor == -1){
+    if (floor == -1){
         nanosleep(&(struct timespec){3, 0}, NULL);
+    }
+    while(floor == -1){
+        
         elevio_motorDirection(DIRN_DOWN);
         floor = elevio_floorSensor();
     }
-    
     elevio_motorDirection(DIRN_STOP);
 
 }
@@ -236,9 +238,9 @@ int main(){
         }
         
 
-        if(elevio_obstruction()){
-            break;
-        } 
+      //  if(elevio_obstruction()){
+      //      break;
+      //  } 
         
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
     }
