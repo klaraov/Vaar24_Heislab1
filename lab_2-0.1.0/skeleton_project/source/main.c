@@ -181,18 +181,12 @@ int main(){
 
         if(elevio_obstruction()){
             break;
-          //  elevio_stopLamp(1);
-
-        } else {
-            // elevio_stopLamp(0);
-        }
-
-     //   if(elevio_stopButton()){
-           // stoppknapp
-       //     break;
-        }
-
+        } 
+        
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
-         return 0;
+    }
+
+    
+    return 0;
 } 
    
