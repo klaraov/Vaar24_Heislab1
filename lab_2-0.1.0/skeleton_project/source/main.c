@@ -27,7 +27,6 @@ void printMatrise(){
         }
         printf("\n");   
     }
-
 }
 
 void klokke() {
@@ -51,6 +50,36 @@ void heisFremme(int f, int b){
     matrise[f][b] = 0;
 }
 
+void resetMatrise(){
+    for(int f = 0; f < N_FLOORS; f++){
+        for(int b = 0; b < N_BUTTONS; b++){
+            elevio_buttonLamp(f, b, 0);
+            matrise[f][b] = 0;
+        }
+    }
+}
+
+void stoppKnapp(){
+    int floor = elevio_floorSensor();
+    if (elevio_stopButton()){
+        while(elevio_stopButton()){
+            elevio_stopLamp(1);
+            elevio_motorDirection(DIRN_STOP);
+            resetMatrise();
+            if (floor!= -1){
+                elevio_doorOpenLamp(1);
+            }  
+        }
+        if (floor != -1){
+            elevio_doorOpenLamp(1);
+            klokke();
+            elevio_doorOpenLamp(0);
+        } 
+    }
+}
+
+
+
 int main(){
 
 
@@ -59,12 +88,7 @@ int main(){
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
    
-
-    for(int f = 0; f < N_FLOORS; f++){
-        for(int b = 0; b < N_BUTTONS; b++){
-            elevio_buttonLamp(f, b, 0);
-        }
-    }
+    resetMatrise();
     
     int floor = elevio_floorSensor();
 
@@ -76,7 +100,6 @@ int main(){
     elevio_motorDirection(DIRN_STOP);
 
     while(1){
-
         floor = elevio_floorSensor();
 
         if(0 <= floor && floor <= (N_FLOORS-1)){
@@ -100,17 +123,7 @@ int main(){
                         }
                     }
 
-                    if(elevio_stopButton()){
-                        elevio_motorDirection(DIRN_STOP);
-
-                        for(int f = 0; f < N_FLOORS; f++){
-                            for(int b = 0; b < N_BUTTONS; b++){
-                                printf("%d ", matrise[f][b]);       
-                            }
-                            printf("\n");   
-                        }
-                        break;
-                    }
+                    stoppKnapp();
                     
                     if(0 <= floor && floor <= (N_FLOORS-1)){
                         
@@ -154,10 +167,7 @@ int main(){
             // elevio_stopLamp(0);
         }
 
-        if(elevio_stopButton()){
-           // stoppknapp
-            break;
-        }
+        stoppKnapp();
 
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
        
