@@ -116,19 +116,13 @@ int main(){
 
 
     while(1){
-        int stopp1 = elevio_stopButton();
-        nanosleep(&(struct timespec){0, 2}, NULL);
-        int stopp2 = elevio_stopButton();
-        
-        
+      
     
         while (1){
             int stopp1 = elevio_stopButton();
             nanosleep(&(struct timespec){0, 2}, NULL);
             int stopp2 = elevio_stopButton();
-            
-            
-            
+
             
             if (stopp1 && stopp1==stopp2){
                 elevio_stopLamp(1);
