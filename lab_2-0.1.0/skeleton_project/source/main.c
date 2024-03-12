@@ -116,6 +116,14 @@ int main(){
     
 
     while(1){
+
+        while (elevio_stopButton()){
+            elevio_stopLamp(1);
+
+        }
+        elevio_stopLamp(0);
+
+        /*
         floor = elevio_floorSensor();
 
         if(0 <= floor && floor <= (N_FLOORS-1)){
@@ -123,7 +131,7 @@ int main(){
         }
         
         stoppKnapp(floor);
-      //  mellomEtasjer(floor);
+        mellomEtasjer(floor);
 
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
@@ -146,7 +154,7 @@ int main(){
                         printMatrise()
                         break;
                     }
-                    */ 
+                    * / 
                     stoppKnapp(floor);
                     
                     
@@ -184,6 +192,7 @@ int main(){
                 }
             }
         }
+        */
 
         if(elevio_obstruction()){
             break;
@@ -191,6 +200,7 @@ int main(){
         
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
     }
+    
 
     
     return 0;
