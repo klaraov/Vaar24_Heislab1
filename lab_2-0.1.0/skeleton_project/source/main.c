@@ -76,11 +76,16 @@ void stoppKnapp(){
         }
 
         if (floor!= -1){
-            heisFremme();
+            heisFremme(0,0);
         }
     }
    
     elevio_stopLamp(0);
+}
+
+void mellomEtasjer(){
+
+
 }
 
 
