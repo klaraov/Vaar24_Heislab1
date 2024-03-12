@@ -63,7 +63,8 @@ void resetMatrise(){
     }
 }
 
-void stoppKnapp(int floor){
+void stoppKnapp(){
+    int floor = elevio_floorSensor();
     if (elevio_stopButton()){
         elevio_stopLamp(1);
         elevio_motorDirection(DIRN_STOP);
@@ -97,7 +98,6 @@ int main(){
     elevio_motorDirection(DIRN_STOP);
 
     while(1){
-
         floor = elevio_floorSensor();
 
         if(0 <= floor && floor <= (N_FLOORS-1)){
@@ -121,17 +121,7 @@ int main(){
                         }
                     }
 
-                    if(elevio_stopButton()){
-                        elevio_motorDirection(DIRN_STOP);
-
-                        for(int f = 0; f < N_FLOORS; f++){
-                            for(int b = 0; b < N_BUTTONS; b++){
-                                printf("%d ", matrise[f][b]);       
-                            }
-                            printf("\n");   
-                        }
-                        break;
-                    }
+                    stoppKnapp();
                     
                     if(0 <= floor && floor <= (N_FLOORS-1)){
                         
@@ -175,10 +165,7 @@ int main(){
             // elevio_stopLamp(0);
         }
 
-        if(elevio_stopButton()){
-           // stoppknapp
-            break;
-        }
+        stoppKnapp();
 
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
        
