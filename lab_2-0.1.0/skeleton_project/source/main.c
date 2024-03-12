@@ -30,15 +30,12 @@ void printMatrise(){
         }
         printf("\n");   
     }
-
 }
 
 void klokke(){
     time_t start = time(NULL);
     time_t slutt = time(NULL);
-
-    while (difftime(slutt,start)< 3){
-         
+    while (difftime(slutt,start)< 3){ 
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
                 knapp(f,b);
@@ -57,6 +54,29 @@ void heisFremme(int f, int b){
     matrise[f][b] = 0;
 }
 
+void resetMatrise(){
+    for(int f = 0; f < N_FLOORS; f++){
+        for(int b = 0; b < N_BUTTONS; b++){
+            elevio_buttonLamp(f, b, 0);
+            matrise[f][b] = 0;
+        }
+    }
+}
+
+void stoppKnapp(int floor){
+    if (elevio_stopButton()){
+        elevio_stopLamp(1);
+        elevio_motorDirection(DIRN_STOP);
+        resetMatrise();
+        if (floor!= -1){
+            elevio_doorOpenLamp(1);
+        }
+    }
+    elevio_stopLamp(0);
+}
+
+
+
 int main(){
 
 
@@ -65,12 +85,7 @@ int main(){
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
    
-
-    for(int f = 0; f < N_FLOORS; f++){
-        for(int b = 0; b < N_BUTTONS; b++){
-            elevio_buttonLamp(f, b, 0);
-        }
-    }
+    resetMatrise();
     
     int floor = elevio_floorSensor();
 
