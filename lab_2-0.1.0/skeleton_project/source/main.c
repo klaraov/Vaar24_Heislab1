@@ -120,7 +120,7 @@ int main(){
     
         while (s1){
             elevio_stopLamp(1);
-            s2 = elevio_stopButton();
+            int s2 = elevio_stopButton();
             if (s2==0){
                 break;
             }
