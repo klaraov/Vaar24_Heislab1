@@ -172,7 +172,7 @@ int main(){
         }
         
         stoppKnapp(floor);
-        mellomEtasjer(floor);
+      //  mellomEtasjer(floor);
 
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
