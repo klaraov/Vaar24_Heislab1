@@ -117,12 +117,13 @@ int main(){
 
     while(1){
         int s1 = elevio_stopButton();
-        int s2 = elevio_stopButton();
-
-        while (s1 && s1 == s2){
+    
+        while (s1){
             elevio_stopLamp(1);
-            s1 = elevio_stopButton();
-
+            s2 = elevio_stopButton();
+            if (s2==0){
+                break;
+            }
             if(elevio_obstruction()){
                 break;
         } 
