@@ -136,7 +136,7 @@ int main(){
             } 
         
         }
-        elevio_stopLamp(0);
+        //elevio_stopLamp(0);
 
         /*
         floor = elevio_floorSensor();
