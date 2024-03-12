@@ -78,9 +78,7 @@ void stoppKnapp(int floor){
             heisFremme(0,0);
         }
     }
-   
-    elevio_stopLamp(0);
-    
+    elevio_stopLamp(0);   
 }
 
 void mellomEtasjer(int floor){
@@ -108,6 +106,7 @@ int main(){
     int floor = elevio_floorSensor();
 
     mellomEtasjer(floor);
+    
 
     while(1){
         floor = elevio_floorSensor();
@@ -117,6 +116,7 @@ int main(){
         }
         
         stoppKnapp(floor);
+      //  mellomEtasjer(floor);
 
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
@@ -141,6 +141,7 @@ int main(){
                     }
                     */ 
                     stoppKnapp(floor);
+                    
                     
                     if(0 <= floor && floor <= (N_FLOORS-1)){
                         
@@ -178,6 +179,7 @@ int main(){
         }
 
         if(elevio_obstruction()){
+            break;
           //  elevio_stopLamp(1);
 
         } else {
