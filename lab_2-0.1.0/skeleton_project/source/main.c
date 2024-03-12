@@ -122,16 +122,15 @@ int main(){
             elevio_stopLamp(1);
             int s2 = elevio_stopButton();
             if (s2==0){
+
                 break;
             }
             if(elevio_obstruction()){
                 break;
         } 
         
-
-
         }
-        elevio_stopLamp(0);
+        //elevio_stopLamp(0);
 
         /*
         floor = elevio_floorSensor();
