@@ -68,7 +68,7 @@ void stoppKnapp(int floor){
     nanosleep(&(struct timespec){0, 2}, NULL);
     int stopp2 = elevio_stopButton();
 
-    if (stopp1 && stopp2){
+    while (stopp1 && stopp2){
         elevio_motorDirection(DIRN_STOP);
         resetMatrise();
         elevio_stopLamp(1); 
@@ -76,10 +76,9 @@ void stoppKnapp(int floor){
             if (floor!= -1){
                 elevio_doorOpenLamp(1);
             }
-            if (elevio_stopButton()==0){
-                break;
-            }
+            stopp2 = elevio_stopButton();
         }
+        stopp2 = elevio_stopButton();
 
         if (floor!= -1){
             klokke();
