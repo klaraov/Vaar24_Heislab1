@@ -32,7 +32,6 @@ void obstruction(){
                 knapp(f,b);
             }
         }
-
     }
 }
 
@@ -63,9 +62,9 @@ void heisFremme(int f, int b){
     elevio_motorDirection(DIRN_STOP);
     elevio_buttonLamp(f, b, 0);
     elevio_doorOpenLamp(1);
-    obstruction();
+  //  obstruction();
     klokke();
-    obstruction();
+   // obstruction();
     elevio_doorOpenLamp(0);
     matrise[f][b] = 0;
 }
@@ -163,7 +162,7 @@ int main(){
             elevio_floorIndicator(floor);
         }
         
-        //stoppKnapp(floor);
+        stoppKnapp(floor);
         //mellomEtasjer(floor);
 
         for(int f = 0; f < N_FLOORS; f++){
@@ -188,7 +187,7 @@ int main(){
                         break;
                     }
                     */ 
-                  //  stoppKnapp(floor);
+                    stoppKnapp(floor);
                     
                     
                     if(0 <= floor && floor <= (N_FLOORS-1)){
@@ -227,9 +226,9 @@ int main(){
         }
         
 
-      //  if(elevio_obstruction()){
-      //      break;
-      //  } 
+        if(elevio_obstruction()){
+            break;
+        } 
         
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
     }
