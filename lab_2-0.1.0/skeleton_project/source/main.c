@@ -66,13 +66,20 @@ void resetMatrise(){
 void stoppKnapp(){
     int floor = elevio_floorSensor();
     if (elevio_stopButton()){
-        elevio_stopLamp(1);
         elevio_motorDirection(DIRN_STOP);
         resetMatrise();
+        while (elevio_stopButton()){
+            elevio_stopLamp(1);     
+            if (floor!= -1){
+                elevio_doorOpenLamp(1);
+            }
+        }
+
         if (floor!= -1){
-            elevio_doorOpenLamp(1);
+            heisFremme();
         }
     }
+   
     elevio_stopLamp(0);
 }
 
@@ -103,7 +110,8 @@ int main(){
         if(0 <= floor && floor <= (N_FLOORS-1)){
             elevio_floorIndicator(floor);
         }
-
+        
+        stoppKnapp(floor);
 
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
@@ -121,7 +129,17 @@ int main(){
                         }
                     }
 
+<<<<<<< HEAD
+                 /*  if(elevio_stopButton()){
+                        elevio_motorDirection(DIRN_STOP);
+                        printMatrise()
+                        break;
+                    }
+                    */ 
+                    stoppKnapp(floor);
+=======
                     stoppKnapp();
+>>>>>>> 24037bfce1840c702f6af0f3e39fc16fa278b409
                     
                     if(0 <= floor && floor <= (N_FLOORS-1)){
                         
@@ -165,7 +183,14 @@ int main(){
             // elevio_stopLamp(0);
         }
 
+<<<<<<< HEAD
+     //   if(elevio_stopButton()){
+           // stoppknapp
+       //     break;
+        }
+=======
         stoppKnapp();
+>>>>>>> 24037bfce1840c702f6af0f3e39fc16fa278b409
 
         nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
        
