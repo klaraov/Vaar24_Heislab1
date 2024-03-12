@@ -81,8 +81,7 @@ void stoppKnapp(int floor){
         stopp2 = elevio_stopButton();
         
         elevio_stopLamp(0);
-        if (floor!= -1){
-               
+        if (floor!= -1){     
             klokke();
             elevio_doorOpenLamp(0);
         }
@@ -124,7 +123,7 @@ int main(){
         }
         
         stoppKnapp(floor);
-        mellomEtasjer(floor);
+      //  mellomEtasjer(floor);
 
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
