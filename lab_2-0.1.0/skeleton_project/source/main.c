@@ -116,9 +116,16 @@ int main(){
     
 
     while(1){
+        int s1 = elevio_stopButton();
 
-        while (elevio_stopButton()){
+        while (s1){
             elevio_stopLamp(1);
+
+            if(elevio_obstruction()){
+                break;
+        } 
+        
+
 
         }
         elevio_stopLamp(0);
