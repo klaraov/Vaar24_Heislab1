@@ -13,13 +13,6 @@
 int matrise[ROWS][COLS] = {0};
 
 
-void obstruction(){
-    while (elevio_obstruction()){
-        elevio_doorOpenLamp(1);
-        knapp();
-    }
-}
-
 void knapp(int f, int b){
     int btnPressed = elevio_callButton(f, b);
     nanosleep(&(struct timespec){0, 2}, NULL);
@@ -29,6 +22,14 @@ void knapp(int f, int b){
         matrise[f][b] = btnPressed;
     }
 }
+
+void obstruction(){
+    while (elevio_obstruction()){
+        elevio_doorOpenLamp(1);
+        knapp();
+    }
+}
+
 
 void printMatrise(){     
     for(int f = 0; f < N_FLOORS; f++){
