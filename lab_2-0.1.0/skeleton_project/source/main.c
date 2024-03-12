@@ -79,13 +79,15 @@ void stoppKnapp(int floor){
             stopp2 = elevio_stopButton();
         }
         stopp2 = elevio_stopButton();
-
+        
+        elevio_stopLamp(0);
         if (floor!= -1){
+               
             klokke();
             elevio_doorOpenLamp(0);
         }
     }
-    elevio_stopLamp(0);   
+    
 }
 
 void mellomEtasjer(int floor){
