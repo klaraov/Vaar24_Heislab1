@@ -115,6 +115,7 @@ void stoppKnapp(int floor){
 
 void mellomEtasjer(int floor){
     while(floor == -1){
+        nanosleep(&(struct timespec){3, 0}, NULL);
         elevio_motorDirection(DIRN_DOWN);
         floor = elevio_floorSensor();
     }
@@ -172,7 +173,7 @@ int main(){
         }
         
         stoppKnapp(floor);
-      //  mellomEtasjer(floor);
+        mellomEtasjer(floor);
 
         for(int f = 0; f < N_FLOORS; f++){
             for(int b = 0; b < N_BUTTONS; b++){
