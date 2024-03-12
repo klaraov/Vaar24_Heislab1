@@ -72,10 +72,12 @@ void stoppKnapp(int floor){
         elevio_motorDirection(DIRN_STOP);
         resetMatrise();
         elevio_stopLamp(1); 
-        while (stopp1 && stopp2){
-            elevio_stopLamp(1);     
+        while (stopp1 && stopp2){  
             if (floor!= -1){
                 elevio_doorOpenLamp(1);
+            }
+            if (elevio_stopButton()==0){
+                break;
             }
         }
 
