@@ -13,6 +13,12 @@
 int matrise[ROWS][COLS] = {0};
 
 
+void obstruction(){
+    while (elevio_obstruction()){
+        elevio_doorOpenLamp(1);
+    }
+}
+
 void knapp(int f, int b){
     int btnPressed = elevio_callButton(f, b);
     nanosleep(&(struct timespec){0, 2}, NULL);
@@ -98,12 +104,6 @@ void mellomEtasjer(int floor){
     
     elevio_motorDirection(DIRN_STOP);
 
-}
-
-void obstruction(){
-    while (elevio_obstruction()){
-        elevio_doorOpenLamp(1);
-    }
 }
 
 int main(){
